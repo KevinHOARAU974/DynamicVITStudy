@@ -307,7 +307,7 @@ def apply_dynamicVit(args):
     sparse_ratio = [args.base_rate, args.base_rate - 0.2, args.base_rate - 0.4]
     keep_rate = keep_rate = [sparse_ratio[0], sparse_ratio[0]**2, sparse_ratio[0]**3]
     
-    model, teacher = define_model_teacher(args, args.pretrained_path, sparse_ratio)
+    model, teacher = define_model_teacher(args, sparse_ratio)
     
     model = model.to(args.device)
     
