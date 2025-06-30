@@ -509,7 +509,7 @@ def main(args):
         
     train_loader, val_loader, test_loader = create_data_loaders("./", args.batch_size, args.input_size)
     device = "cuda" if torch.cuda.is_available() else 'cpu'
-    example_input = torch.randn(args.batch_size, 3, args.img_size, args.img_size).to(device)
+    example_input = torch.randn(args.batch_size, 3, args.input_size, args.input_size).to(device)
     
     apply_dynamicVit(args)
     
