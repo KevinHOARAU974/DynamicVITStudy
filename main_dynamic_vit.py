@@ -524,10 +524,14 @@ def main(args):
     model_pl.model.eval()
     model_pl.eval()
     
+    print(model_pl(example_input))
+    
     teacher_pl = BaseModel()
     teacher_pl.model = teacher
     teacher_pl.model.eval()
     teacher_pl.eval()
+    
+    print(teacher_pl(example_input))
     
     train_loader, val_loader, test_loader = create_data_loaders("./", args.batch_size, args.input_size)
     
