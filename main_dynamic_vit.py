@@ -525,7 +525,7 @@ def main(args):
     model_pl.eval()
     model_pl.to(device)
     
-    print(f"model_pl.training : {model_pl.model.training}")
+    print(f"model_pl.model.training : {model_pl.model.training}")
     print(model_pl(example_input))
     
     teacher_pl = BaseModel()
@@ -534,7 +534,7 @@ def main(args):
     teacher_pl.eval()
     teacher_pl.to(device)    
     
-    print(f"teacher_pl.training : {model_pl.model.training}")
+    print(f"teacher_pl.model.training : {teacher_pl.model.training}")
     print(teacher_pl(example_input))
     
     train_loader, val_loader, test_loader = create_data_loaders("./", args.batch_size, args.input_size)
