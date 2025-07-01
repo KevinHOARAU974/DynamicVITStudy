@@ -589,7 +589,10 @@ class VisionTransformerTeacher(nn.Module):
         tokens = feature[:, 1:]
         cls = self.pre_logits(cls)
         cls = self.head(cls)
-        return cls, tokens
+        if self.training:
+            return cls, tokens
+        else:
+            return cls
 
 def resize_pos_embed(posemb, posemb_new):
     # Rescale the grid of position embeddings when loading from state_dict. Adapted from
