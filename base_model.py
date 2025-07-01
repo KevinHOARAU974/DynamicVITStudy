@@ -17,18 +17,11 @@ from torchmetrics.classification import MulticlassConfusionMatrix
 
 class BaseModel(pl.LightningModule):
 
-    def __init__(self, model_name, num_classes=4, learning_rate= 1e-3):
+    def __init__(self, num_classes=4, learning_rate= 1e-3):
 
         super().__init__()
 
-        if model_name == "vit_b_16":
-          self.model = timm.create_model("vit_base_patch16_224", pretrained=True, num_classes=num_classes)
-        if model_name == "vit_b_32":
-          self.model = timm.create_model("vit_base_patch32_224", pretrained=True, num_classes=num_classes)
-        if model_name == "deit_s":
-          self.model = timm.create_model("deit_small_patch16_224", pretrained=True, num_classes=num_classes)
-        if model_name == "convnext_t":
-          self.model = timm.create_model("convnext_tiny", pretrained=True, num_classes=num_classes)
+        self.model = None
 
         self.criterion = nn.CrossEntropyLoss()
         self.learning_rate = learning_rate
