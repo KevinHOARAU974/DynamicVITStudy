@@ -29,7 +29,7 @@ def is_image_strictly_valid(path):
 def copy_files(files, split):
     print('Copying files to', split)
 
-    for file in tqdm(files, disable=True):
+    for file in tqdm(files, disable=False):
         if not is_image_strictly_valid(file):
             print(f"Warning: Invalid image file: {file}")
             continue
