@@ -61,6 +61,7 @@ class BaseModel(pl.LightningModule):
         self.val_accuracy.reset()
 
     def test_step(self, batch, batch_idx):
+        print(f"[DEBUG] self.training: {self.training}")
         inputs, labels = batch
         outputs = self(inputs)
         test_loss = self.criterion(outputs, labels)
