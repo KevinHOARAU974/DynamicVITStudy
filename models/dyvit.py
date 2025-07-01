@@ -488,7 +488,7 @@ class VisionTransformerTeacher(nn.Module):
     """
     def __init__(self, img_size=224, patch_size=16, in_chans=3, num_classes=1000, embed_dim=768, depth=12,
                  num_heads=12, mlp_ratio=4., qkv_bias=True, qk_scale=None, representation_size=None,
-                 drop_rate=0., attn_drop_rate=0., drop_path_rate=0., hybrid_backbone=None, norm_layer=None):
+                 drop_rate=0., attn_drop_rate=0., drop_path_rate=0., hybrid_backbone=None, norm_layer=None, return_token=True):
         """
         Args:
             img_size (int, tuple): input image size
@@ -514,6 +514,8 @@ class VisionTransformerTeacher(nn.Module):
         self.num_classes = num_classes
         self.num_features = self.embed_dim = embed_dim  # num_features for consistency with other models
         norm_layer = norm_layer or partial(nn.LayerNorm, eps=1e-6)
+        
+        self.return_token = return_token
 
         if hybrid_backbone is not None:
             self.patch_embed = HybridEmbed(
@@ -589,7 +591,7 @@ class VisionTransformerTeacher(nn.Module):
         tokens = feature[:, 1:]
         cls = self.pre_logits(cls)
         cls = self.head(cls)
-        if self.training:
+        if self.return_token:
             return cls, tokens
         else:
             return cls

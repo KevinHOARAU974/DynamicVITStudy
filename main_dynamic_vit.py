@@ -525,17 +525,10 @@ def main(args):
     model_pl.eval()
     model_pl.to(device)
     
-    print(f"model_pl.model.training : {model_pl.model.training}")
-    print(model_pl(example_input))
-    
     teacher_pl = BaseModel()
     teacher_pl.model = teacher
-    teacher_pl.model.eval()
-    teacher_pl.eval()
-    teacher_pl.to(device)    
-    
-    print(f"teacher_pl.model.training : {teacher_pl.model.training}")
-    print(teacher_pl(example_input))
+    teacher_pl.model.return_token = False
+    teacher_pl.to(device) 
     
     train_loader, val_loader, test_loader = create_data_loaders("./", args.batch_size, args.input_size)
     
