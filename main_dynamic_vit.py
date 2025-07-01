@@ -552,7 +552,7 @@ def main(args):
     results_benchmark_model =  benchmark(model_pl, example_input, gpu_only=True)
     
     new_entry = {
-        "model": f"{args.model_name}",
+        "model": f"{args.model}",
         "arguments": vars(args),
         "test_base": result_loss_teacher,
         "benchmark_base": results_benchmark_teacher,
