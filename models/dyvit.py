@@ -393,6 +393,7 @@ class VisionTransformerDiffPruning(nn.Module):
         self.token_ratio = token_ratio
         
         self.distill = distill
+        self.kl = kl
         self.viz_mode = viz_mode
 
         trunc_normal_(self.pos_embed, std=.02)
