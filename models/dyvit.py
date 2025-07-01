@@ -470,7 +470,7 @@ class VisionTransformerDiffPruning(nn.Module):
         x = self.pre_logits(x)
         x = self.head(x)
         if self.training:
-            if self.distill:
+            if self.distill or self.kl:
                 return x, features, prev_decision.detach(), out_pred_prob
             else:
                 return x, out_pred_prob
