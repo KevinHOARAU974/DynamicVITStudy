@@ -521,9 +521,11 @@ def main(args):
     
     model_pl = BaseModel()
     model_pl.model = model
+    model_pl.eval()
     
     teacher_pl = BaseModel()
     teacher_pl.model = teacher
+    teacher_pl.eval()
     
     train_loader, val_loader, test_loader = create_data_loaders("./", args.batch_size, args.input_size)
     
