@@ -385,7 +385,7 @@ class ConvNeXt_Teacher(nn.Module):
     """
     def __init__(self, in_chans=3, num_classes=1000, 
                  depths=[3, 3, 9, 3], dims=[96, 192, 384, 768], drop_path_rate=0., 
-                 layer_scale_init_value=1e-6, head_init_scale=1.,
+                 layer_scale_init_value=1e-6, head_init_scale=1., return_token = True
                  ):
         super().__init__()
 
@@ -419,6 +419,8 @@ class ConvNeXt_Teacher(nn.Module):
         self.apply(self._init_weights)
         self.head.weight.data.mul_(head_init_scale)
         self.head.bias.data.mul_(head_init_scale)
+        
+        self.return_token = return_token
 
     def _init_weights(self, m):
         if isinstance(m, (nn.Conv2d, nn.Linear)):
@@ -435,7 +437,10 @@ class ConvNeXt_Teacher(nn.Module):
         x = self.norm(x.mean([-2, -1]))
         
         x = self.head(x)
-        return x, featmap
+        if self.return_token:
+            return x, featmap
+        else:
+            return x
 
 class LayerNorm(nn.Module):
     r""" LayerNorm that supports two data formats: channels_last (default) or channels_first. 

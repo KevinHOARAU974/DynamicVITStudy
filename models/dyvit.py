@@ -342,6 +342,8 @@ class VisionTransformerDiffPruning(nn.Module):
             drop_path_rate (float): stochastic depth rate
             hybrid_backbone (nn.Module): CNN backbone to use in-place of PatchEmbed module
             norm_layer: (nn.Module): normalization layer
+            distill (bool): return extra output during training
+            kl (bool): return extra output during training 
         """
         super().__init__()
 
