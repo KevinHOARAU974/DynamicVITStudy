@@ -513,6 +513,8 @@ def main(args):
     
     apply_dynamicVit(args)
     
+    args.distill = False
+    
     sparse_ratio = [args.base_rate, args.base_rate - 0.2, args.base_rate - 0.4]
     
     model, teacher = define_model_teacher(args, sparse_ratio, load_student=True)
