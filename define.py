@@ -85,7 +85,7 @@ def define_model_teacher(args, sparse_ratio, load_student=False):
         print('token_ratio =', KEEP_RATE, 'at layer', PRUNING_LOC)
         model = VisionTransformerDiffPruning(
             patch_size=16, embed_dim=384, depth=12, num_heads=6, mlp_ratio=4, qkv_bias=True, 
-        pruning_loc=PRUNING_LOC, token_ratio=KEEP_RATE, distill=args.distill, num_classes = args.nb_classes,
+        pruning_loc=PRUNING_LOC, token_ratio=KEEP_RATE, distill=args.distill, kl=args.kl, num_classes = args.nb_classes,
         )
         pretrained = torch.load(args.pretrained_teacher_model , map_location='cpu')
         teacher_model = VisionTransformerTeacher(
@@ -97,7 +97,7 @@ def define_model_teacher(args, sparse_ratio, load_student=False):
         print('token_ratio =', KEEP_RATE, 'at layer', PRUNING_LOC)
         model = VisionTransformerDiffPruning(
             patch_size=16, embed_dim=768, depth=12, num_heads=12, mlp_ratio=4, qkv_bias=True, 
-        pruning_loc=PRUNING_LOC, token_ratio=KEEP_RATE, distill=args.distill, drop_path_rate=args.drop_path, num_classes = args.nb_classes)
+        pruning_loc=PRUNING_LOC, token_ratio=KEEP_RATE, distill=args.distill, kl=args.kl, drop_path_rate=args.drop_path, num_classes = args.nb_classes)
         pretrained = torch.load(args.pretrained_teacher_model, map_location='cpu')
         teacher_model = VisionTransformerTeacher(
             patch_size=16, embed_dim=768, depth=12, num_heads=12, mlp_ratio=4, qkv_bias=True, num_classes = args.nb_classes)
@@ -108,7 +108,7 @@ def define_model_teacher(args, sparse_ratio, load_student=False):
         print('token_ratio =', KEEP_RATE, 'at layer', PRUNING_LOC)
         model = VisionTransformerDiffPruning(
             patch_size=32, embed_dim=768, depth=12, num_heads=12, mlp_ratio=4, qkv_bias=True, 
-        pruning_loc=PRUNING_LOC, token_ratio=KEEP_RATE, distill=args.distill, drop_path_rate=args.drop_path, num_classes = args.nb_classes)
+        pruning_loc=PRUNING_LOC, token_ratio=KEEP_RATE, distill=args.distill, kl=args.kl, drop_path_rate=args.drop_path, num_classes = args.nb_classes)
         pretrained = torch.load(args.pretrained_teacher_model, map_location='cpu')
         teacher_model = VisionTransformerTeacher(
             patch_size=32, embed_dim=768, depth=12, num_heads=12, mlp_ratio=4, qkv_bias=True, num_classes = args.nb_classes)
