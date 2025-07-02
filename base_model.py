@@ -8,7 +8,6 @@ Created on Tue Jun 24 08:22:57 2025
 import torch
 import torch.optim as optim
 import torch.nn as nn
-import timm
 import pytorch_lightning as pl
 
 from torchmetrics import Accuracy

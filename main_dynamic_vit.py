@@ -309,8 +309,6 @@ def apply_dynamicVit(args):
     
     model, teacher = define_model_teacher(args, sparse_ratio)
     
-    # model = model.to(args.device)
-    
     criterion = define_criterion(args, teacher, criterion, sparse_ratio, keep_rate)
 
     model.eval()

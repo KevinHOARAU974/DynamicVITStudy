@@ -510,6 +510,7 @@ class VisionTransformerTeacher(nn.Module):
             drop_path_rate (float): stochastic depth rate
             hybrid_backbone (nn.Module): CNN backbone to use in-place of PatchEmbed module
             norm_layer: (nn.Module): normalization layer
+            return_token (bool): Enable the return of tokens during training or not during inference
         """
         super().__init__()
 
